@@ -24,27 +24,25 @@ A breed might refer different type of missions and no chance to define which bre
 
 */
 
-create table breeds (
-  id                    bigint,
-  name                  varchar(255) not null,
-  average_weight        int not null,
-  origin                varchar(63),
-  recomended_nickname   varchar(63),
-  constraint  breeds_PK primary key (id),
-  constraint  breeds_name_UQ unique (name)
+CREATE TABLE IF NOT EXISTS breeds (
+  id                    BIGINT,
+  name                  VARCHAR(255) NOT NULL,
+  average_weight        INT NOT NULL,
+  origin                VARCHAR(63),
+  recomended_nickname   VARCHAR(63),
+  CONSTRAINT  breeds_PK PRIMARY KEY (id)
 );
 
-create table vocations (
-  id                      bigint,
-  mission                 varchar(255) not null,
-  constraint              vocations_PK primary key (id),
-  constraint              vocations_mission_UQ unique (name)
+CREATE TABLE IF NOT EXISTS vocations (
+  id                      BIGINT,
+  mission                 VARCHAR(255) NOT NULL,
+  CONSTRAINT              vocations_PK PRIMARY KEY (id)
 );
 
-create table breeds_vocations (
-  breeds_id bigint not null,
-  vocations_id bigint not null,
-  constraint breeds_vocations_breeds_FK foreign key (breeds_id) references breeds,
-  constraint breeds_vocations_vocations_FK foreign key (vocations_id) references vocations,
-  constraint breeds_vocations_breeds_id_vocations_id_UQ unique (broker_id, sales_group_id)
+CREATE TABLE IF NOT EXISTS breeds_vocations (
+  breeds_id bigint NOT NULL,
+  vocations_id bigint NOT NULL,
+  CONSTRAINT breeds_vocations_breeds_FK FOREIGN KEY (breeds_id) REFERENCES breeds,
+  CONSTRAINT breeds_vocations_vocations_FK FOREIGN KEY (vocations_id) REFERENCES vocations,
+  CONSTRAINT breeds_vocations_breeds_id_vocations_id_UQ UNIQUE (breed_id, vocation_id)
 );

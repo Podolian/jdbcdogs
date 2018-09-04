@@ -10,9 +10,11 @@ public interface DogsDao {
 
     List<Breed> findAll();
 
+    Breed findOne(Long id);
+
     void update(Breed breed);
 
     void remove(Breed breed);
 
-    List<Breed> breedSuitableFor(Vocation vocation);
+    List<Breed> breedSuitableFor(String mission);
 }
